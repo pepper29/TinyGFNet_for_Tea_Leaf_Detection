@@ -96,8 +96,7 @@ python scripts/inference.py --image_path sample_leaf.jpg --checkpoint outputs/be
 | **TinyGFNet (Ours)** | **12.88** | **1.34** | **0.95** |
 
 <p align="center">
-<img src="assets/best_confusion_matrix.png" alt="Confusion Matrix" width="45%"/>
-<img src="assets/demo_result.gif" alt="Demo Result" width="45%"/>
+<img src="Accuracy_Parameter Count Per Model.png" alt="Accuracy_Parameter Count Per Model" width="45%"/>
 </p>
 
 
