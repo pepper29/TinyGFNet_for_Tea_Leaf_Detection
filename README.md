@@ -1,7 +1,6 @@
 # Lightweight Dual-Backbone Framework for Tea Leaf Disease Detection
 
-> **📢 News** > This paper has been accepted by **IEEE International Symposium on Consumer Technology (ISCT) 2025**.  
-> **Paper Link:** [TBD]
+> **📢Paper Link:** [TBD]
 
 ---
 
