@@ -1,0 +1,58 @@
+
+teaformer_project/
+├── config/
+│   └── config.py            # 학습 관련 하이퍼파라미터 및 경로 설정 (Python 파일)
+├── data/
+│   ├── raw/                 # 원본 이미지가 클래스별 폴더로 저장됨
+│   ├── preprossed_data/      # augmentation을 통해 각 클래스별로 최소 1000장씩 저장됨
+│   └── split/               # preprossed_data를 7:1:2 (Train: Val: Test) 비율로 분할한 데이터셋 (각 클래스별 하위 폴더)
+├── models/
+│   └── teaformer.py         # 제안하는 TeaFormer 모델 (CNN, ViT, Dynamic Fusion 등 ablation 지원)
+├── outputs/
+│   ├── checkpoints/         # 학습 중 저장된 모델 가중치 (best_model.pth, final_model.pth 등)
+│   ├── logs/                # 학습 및 실험 로그가 {총epoch}_exp.txt 형태로 저장됨
+│   └── visualizations/      # 예를 들어, Attention map 등 시각화 결과
+├── scripts/
+│   ├── augmentation.py      # 원본 데이터를 전처리 및 augmentation하여 preprossed_data 생성, 그리고 7:1:2 데이터셋 분할
+│   ├── dataset.py           # 사용자 정의 데이터셋 클래스 (ImageFolder 기반) – preprocessing.py와 연계됨
+│   ├── preprocessing.py     # 전처리 함수들 제공 (adaptive histogram equalization, z‑score normalization 등)
+│   ├── train.py             # 학습 루프 코드 – 설정(config.py)을 사용하여 모델 학습, 10 epoch마다 블록별 최고 성능 저장 및 최종 모델 저장, 진행상황 바 그래프로 시각화, 로그 저장
+│   └── inference.py         # 학습된 모델을 불러와 단일 이미지/전체 데이터셋에 대해 평가 및 시각화 (confusion matrix, precision, recall, F1 등)
+└── README.md                # 프로젝트 개요 및 사용법 안내
+
+
+
+
+# TeaFormer: Tea Leaf Disease Detection
+
+이 프로젝트는 Tea Leaf Disease Detection을 위해 CNN과 ViT를 결합한 하이브리드 모델(TeaFormer)을 제안하며, 아래와 같은 파이프라인을 구축하였습니다.
+
+## 프로젝트 구성
+- **config/**: 학습 관련 하이퍼파라미터 및 경로 설정 (Python 파일로 관리)
+- **data/**:
+  - **raw/**: 원본 이미지 (클래스별 폴더 구조)
+  - **preprossed_data/**: 전처리 및 augmentation을 적용하여 각 클래스별 최소 1000장 저장
+  - **split/**: 전처리+증강 데이터를 7:1:2 (Train:Val:Test) 비율로 분할
+- **models/**: TeaFormer 모델 코드 (Dynamic Fusion 기능 포함, ablation 실험 지원)
+- **outputs/**:
+  - **checkpoints/**: 학습 중 블록별 최고 모델 및 최종 모델 저장
+  - **logs/**: 학습 로그가 `{total_epochs}_exp.txt` 이름으로 저장됨
+  - **visualizations/**: 학습/추론 관련 시각화 결과 (예: Confusion Matrix, Attention Map)
+- **scripts/**:
+  - **augmentation.py**: 전처리 및 augmentation, 데이터셋 분할 코드
+  - **dataset.py**: 사용자 정의 데이터셋 클래스 (전처리 적용)
+  - **preprocessing.py**: 이미지 전처리 함수 (CLAHE, z-score 등)
+  - **train.py**: 모델 학습 코드 (진행 상황은 실시간 바 그래프로 시각화)
+  - **inference.py**: 평가 및 시각화 (Accuracy, Precision, Recall, F1, Confusion Matrix 등)
+
+## 학습 및 추론
+
+1. **데이터 증강 및 분할**  
+   `scripts/augmentation.py`를 실행하여 전처리+augmentation된 데이터를 생성한 후, 
+   `/data1/seyong/metaverse/tealeaf2/data/split/`에 Train/Val/Test 셋을 구성합니다.
+
+2. **모델 학습**  
+   프로젝트 루트에서 아래 명령으로 학습을 시작합니다.  
+   모델은 10 epoch마다 현재 블록 내 최고 성능 모델로 덮어쓰며, 최종 모델은 별도로 저장됩니다.
+   ```bash
+   CUDA_VISIBLE_DEVICES=3 python -m scripts.train
