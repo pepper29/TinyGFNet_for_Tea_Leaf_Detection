@@ -11,7 +11,7 @@ This project implements the official code for the paper:
 **"Lightweight Dual-Backbone Framework for Tea Leaf Disease Detection"**.
 
 <p align="center">
-  <img src="assets/teaformer_model.png" alt="TinyGFNet Architecture" width="800"/>
+  <img src="teaformer_model.png" alt="TinyGFNet Architecture" width="800"/>
 </p>
 
 ## ✨ Key Features
