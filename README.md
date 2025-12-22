@@ -37,10 +37,28 @@ This project implements the official code for the paper:
 │   └── ...
 ├── requirements.txt       # Python dependencies
 └── README.md
-🚀 Getting Started1. InstallationClone the repository and install dependencies.Bashgit clone [https://github.com/pepper29/TinyGFNet.git](https://github.com/pepper29/TinyGFNet.git)
+
+```
+
+## 🚀 Getting Started
+
+### 1. Installation
+
+Clone the repository and install dependencies.
+
+```bash
+git clone [https://github.com/pepper29/TinyGFNet.git](https://github.com/pepper29/TinyGFNet.git)
 cd TinyGFNet
 pip install -r requirements.txt
-2. Dataset PreparationStructure your dataset as follows:data/
+
+```
+
+### 2. Dataset Preparation
+
+Structure your dataset as follows:
+
+```
+data/
   ├── train/
   │   ├── class_1/
   │   ├── class_2/
@@ -48,13 +66,44 @@ pip install -r requirements.txt
   └── val/
       ├── class_1/
       └── ...
-3. TrainingTo train the TinyGFNet model on your dataset:Bashpython scripts/train.py --config config/config.py
-4. InferenceTo detect diseases from a single image:Bashpython scripts/inference.py --image_path sample_leaf.jpg --checkpoint outputs/best_model.pth
-📊 Experimental ResultsModelParams (M)FLOPs (G)AccuracyCNN11.241.820.92ViT86.0012.020.95MobileNetV30.700.020.80TinyGFNet (Ours)12.881.340.95<p align="center"><img src="assets/best_confusion_matrix.png" alt="Confusion Matrix" width="45%"/><img src="assets/demo_result.gif" alt="Demo Result" width="45%"/></p>📜 CitationIf you find this work useful, please cite our paper:코드 스니펫@inproceedings{jin2025tinygfnet,
-  title={Lightweight Dual-Backbone Framework for Tea Leaf Disease Detection},
-  author={Seyong Jin and [Co-authors]},
-  booktitle={2025 IEEE International Symposium on Consumer Technology (ISCT)},
-  year={2025},
-  note={Accepted}
-}
-📝 LicenseThis project is licensed under the MIT License.
+
+```
+
+### 3. Training
+
+To train the TinyGFNet model on your dataset:
+
+```bash
+python scripts/train.py --config config/config.py
+
+```
+
+### 4. Inference
+
+To detect diseases from a single image:
+
+```bash
+python scripts/inference.py --image_path sample_leaf.jpg --checkpoint outputs/best_model.pth
+
+```
+
+## 📊 Experimental Results
+
+| Model | Params (M) | FLOPs (G) | Accuracy |
+| --- | --- | --- | --- |
+| CNN | 11.24 | 1.82 | 0.92 |
+| ViT | 86.00 | 12.02 | 0.95 |
+| MobileNetV3 | 0.70 | 0.02 | 0.80 |
+| **TinyGFNet (Ours)** | **12.88** | **1.34** | **0.95** |
+
+<p align="center">
+<img src="assets/best_confusion_matrix.png" alt="Confusion Matrix" width="45%"/>
+<img src="assets/demo_result.gif" alt="Demo Result" width="45%"/>
+</p>
+
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+```
