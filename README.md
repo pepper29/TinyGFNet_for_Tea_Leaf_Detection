@@ -1,6 +1,7 @@
 # Lightweight Dual-Backbone Framework for Tea Leaf Disease Detection
 
-> **📢Paper Link:** [[ISCT2025]](https://ieeexplore.ieee.org/document/11297301)
+> **📢Paper Link:** [[ISCT2025-Lightweight Dual-Backbone Framework for Tea Leaf Disease Detection
+]](https://ieeexplore.ieee.org/document/11297301)
 
 ---
 
